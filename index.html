@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alarm Clock</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+</head>
+<body>
+    <div id="clockFaceDiv">
+    </div>
+
+    <div id="setAlarmDiv">
+        <form>
+            <input type="number" name="hour" id="hour" placeholder="12" maxlength="2" onchange="checkDigit(this);" oninput="checkLength(this);" required /> :
+            <input type="number" name="min" id="min" placeholder="00" maxlength="2" onchange="checkDigit(this);" oninput="checkLength(this);" required /> :
+            <input type="number" name="sec" id="sec" placeholder="00" maxlength="2" onchange="checkDigit(this);" oninput="checkLength(this);" required />
+            <select name="meridiem" id="meridiem">
+                <option value="am">am</option>
+                <option value="pm">pm</option>
+            </select>
+            <button type="submit" class="btn" id="setAlarmBtn" onclick="setAlarm(event);">Set Alarm</button>
+        </form> 
+    </div>
+
+    <div id="alarmListDiv">
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
