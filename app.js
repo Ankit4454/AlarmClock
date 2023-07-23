@@ -2,6 +2,7 @@ window.onload = function () {
   clock();
 };
 
+//Clock face function for current(local) time
 function clock() {
   let now = new Date();
   let TwentyFourHour = now.getHours();
@@ -32,7 +33,7 @@ function clock() {
   setTimeout(clock, 1000);
 }
 
-let alarmList = [];
+let alarmList = [];  //Alarm list containing all active alarms
 
 let alarmBtn = document.getElementById("setAlarmBtn");
 
@@ -43,6 +44,7 @@ alarmBtn.addEventListener("keypress", function (event) {
   }
 });
 
+//setAlarm function which takes user input and validates
 function setAlarm(event) {
   event.preventDefault();
   let hr = document.getElementById("hour");
@@ -55,6 +57,7 @@ function setAlarm(event) {
   }
 }
 
+//Basic validation
 function validateInput(hr, min, sec) {
   if (hr.value == "" || min.value == "" || sec.value == "") {
     alert("Please fill all mandatory fields!");
@@ -73,7 +76,6 @@ function validateInput(hr, min, sec) {
 }
 
 function addAlarm(hr, min, sec, meridiem) {
-  debugger;
   resetInput();
   addInList(hr, min, sec, meridiem);
   showAlarmList();
@@ -85,6 +87,7 @@ function resetInput() {
   document.getElementById("sec").value = "";
 }
 
+//addInList function which creates date object containg user input time (hh:mm:ss) and push it to alarmList
 function addInList(hr, min, sec, meridiem) {
   let currentDate = new Date();
 
@@ -111,8 +114,8 @@ function addInList(hr, min, sec, meridiem) {
   alarmList.push(time);
 }
 
+//showAlarmList function which renders list of active alarms on screen 
 function showAlarmList() {
-  debugger;
   let listDiv = document.getElementById("alarmListDiv");
   listDiv.innerHTML = "";
   alarmList.sort();
@@ -150,6 +153,7 @@ function showAlarmList() {
   hoverAnimation();
 }
 
+//createAlarm function which goes of on user's input time
 function createAlarm(alarmTime) {
   setInterval(function () {
     let currentDate = new Date();
@@ -177,8 +181,8 @@ function createAlarm(alarmTime) {
   }, 1000);
 }
 
+//deleteAlarm function which finds the alarm index from alarmList and splice it
 function deleteAlarm(time) {
-  debugger;
   let alarmIndex = -1;
   for (let i in alarmList) {
     let hr = alarmList[i].getHours();
@@ -238,6 +242,7 @@ function padDigit(digit) {
   return digit;
 }
 
+//clearAllInterval function which clears all active interval before initializing new ones
 function clearAllInterval() {
   for (let i = 0; i <= 99999; i++) {
     window.clearInterval(i);
